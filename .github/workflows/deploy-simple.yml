@@ -1,21 +1,17 @@
-name: Deploy
+name: Deploy Release
 
-run-name: Deploy -> ${{ inputs.environment }} -> ${{ inputs.tag }}
+run-name: Deploy  |  ${{ github.ref_name }}  |  us-east-1
 
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: "Git tag (example: v1.0.0)"
-        required: true
-      environment:
-        description: "Deployment environment"
-        required: true
+  push:
+    tags:
+      - "v*"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Tag: ${{ inputs.tag }}"
-          echo "Environment: ${{ inputs.environment }}"
+      - name: Show deployment info
+        run: |
+          echo "Tag: ${{ github.ref_name }}"
+          echo "Region: us-east-1"
