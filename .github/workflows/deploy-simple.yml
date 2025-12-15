@@ -8,6 +8,7 @@ on:
       tag:
         description: Git tag (example: v1.0.0)
         required: true
+        type: string
       aws_region:
         description: AWS Region
         required: true
@@ -22,4 +23,5 @@ jobs:
     steps:
       - name: Show info
         run: |
-          echo "Tag: ${{
+          echo "Tag: ${{ inputs.tag }}"
+          echo "Region: ${{ inputs.aws_region }}"
