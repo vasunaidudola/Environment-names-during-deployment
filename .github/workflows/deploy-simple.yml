@@ -1,0 +1,22 @@
+name: Deploy ${{ github.ref_name }} → ${{ inputs.aws_region }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      aws_region:
+        description: AWS Region
+        required: true
+        type: choice
+        options:
+          - us-east-1
+          - ap-south-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show deployment info
+        run: |
+          echo "Tag: ${{ github.ref_name }}"
+          echo "Region: ${{ inputs.aws_region }}"
