@@ -1,10 +1,14 @@
-name: Test Deploy
+name: Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag
+        required: true
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello"
+      - run: echo "Tag = ${{ inputs.tag }}"
