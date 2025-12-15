@@ -1,0 +1,16 @@
+name: Deploy Prod (ap-south-1)
+
+run-name: Deploy -> ap-south-1
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to ap-south-1
+        run: |
+          echo "Deploying version ${{ github.ref_name }} to ap-south-1"
