@@ -1,6 +1,6 @@
 name: Deploy Release
 
-run-name: Deploy -> ${{ github.ref_name && github.ref_name.split('-')[1] }} -> ${{ github.ref_name.split('-')[0] }}
+run-name: Deploy -> us-east-1
 
 on:
   push:
@@ -11,4 +11,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Deploying"
+      - name: Extract info
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG%-*}"
+          REGION="${TAG##*-}"
+
+          echo "Version: $VERSION"
+          echo "Region: $REGION"
