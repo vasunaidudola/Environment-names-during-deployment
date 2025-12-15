@@ -1,14 +1,13 @@
 name: Deploy
 
-run-name: Deploy ${{ github.ref_name }} → ${{ inputs.aws_region }}
+run-name: Deploy ${{ inputs.tag }} → ${{ inputs.aws_region }}
 
 on:
-  push:
-    tags:
-      - "v*"
-
   workflow_dispatch:
     inputs:
+      tag:
+        description: Git Tag (example: v1.0.0)
+        required: true
       aws_region:
         description: AWS Region
         required: true
@@ -24,5 +23,5 @@ jobs:
     steps:
       - name: Show info
         run: |
-          echo "Tag: ${{ github.ref_name }}"
+          echo "Tag: ${{ inputs.tag }}"
           echo "Region: ${{ inputs.aws_region }}"
