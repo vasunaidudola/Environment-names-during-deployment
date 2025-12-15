@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Git tag (example: v1.0.0)
+        description: "Git tag (example: v1.0.0)"
         required: true
       environment:
-        description: Deployment environment
+        description: "Deployment environment"
         required: true
 
 jobs:
