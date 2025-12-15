@@ -1,6 +1,6 @@
 name: Deploy
 
-run-name: Deploy ${{ inputs.tag }} → ${{ inputs.aws_region }}
+run-name: Deploy ${{ inputs.tag }} to ${{ inputs.aws_region }}
 
 on:
   workflow_dispatch:
@@ -8,20 +8,15 @@ on:
       tag:
         description: Git tag (example: v1.0.0)
         required: true
-        type: string
       aws_region:
-        description: AWS Region
+        description: AWS region (example: us-east-1)
         required: true
-        type: choice
-        options:
-          - us-east-1
-          - ap-south-1
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Show info
+      - name: Print values
         run: |
           echo "Tag: ${{ inputs.tag }}"
           echo "Region: ${{ inputs.aws_region }}"
