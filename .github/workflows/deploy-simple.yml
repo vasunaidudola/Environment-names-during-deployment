@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Git Tag (example: v1.0.0)
+        description: Git tag (example: v1.0.0)
         required: true
       aws_region:
         description: AWS Region
@@ -19,9 +19,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Show info
         run: |
-          echo "Tag: ${{ inputs.tag }}"
-          echo "Region: ${{ inputs.aws_region }}"
+          echo "Tag: ${{
