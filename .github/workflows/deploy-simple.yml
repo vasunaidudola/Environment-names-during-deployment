@@ -1,6 +1,6 @@
 name: Deploy
 
-run-name: Deploy ${{ inputs.tag }} to ${{ inputs.environment }}
+run-name: Deploy -> ${{ inputs.environment }} -> ${{ inputs.tag }}
 
 on:
   workflow_dispatch:
