@@ -1,30 +1,16 @@
 name: Deploy Release
 
-run-name: Deploy -> ${{ inputs.region }}
+run-name: Deploy -> us-east-1
 
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: "Release tag (example: v1.0.0)"
-        required: true
-      region:
-        description: "AWS Region"
-        required: true
-        type: choice
-        options:
-          - us-east-1
-          - ap-south-1
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout tag
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.tag }}
-
-      - name: Deploy
+      - name: Deploy application
         run: |
-          echo "Deploying tag ${{ inputs.tag }} to region ${{ inputs.region }}"
+          echo "Deploying version ${{ github.ref_name }} to us-east-1"
