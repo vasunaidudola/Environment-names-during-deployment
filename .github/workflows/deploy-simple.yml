@@ -1,16 +1,21 @@
 name: Deploy
 
-run-name: Deploy ${{ inputs.tag }}
+run-name: Deploy ${{ inputs.tag }} → ${{ inputs.environment }}
 
 on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Tag
+        description: Git tag (example: v1.0.0)
+        required: true
+      environment:
+        description: Deployment environment
         required: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Tag = ${{ inputs.tag }}"
+      - run: |
+          echo "Tag: ${{ inputs.tag }}"
+          echo "Environment: ${{ inputs.environment }}"
