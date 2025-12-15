@@ -1,7 +1,5 @@
 name: Deploy Release
 
-run-name: Deploy | us-east-1 | ${{ github.ref_name }}
-
 on:
   push:
     tags:
@@ -10,8 +8,17 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        region:
+          - us-east-1
+          - ap-south-1
+
+    name: Deploy | ${{ matrix.region }}
+
     steps:
-      - name: Print info
+      - name: Show deployment info
         run: |
           echo "Tag: ${{ github.ref_name }}"
-          echo "Region: us-east-1"
+          echo "Region: ${{ matrix.region }}"
