@@ -1,0 +1,16 @@
+name: Deploy Prod (eu-west-1)
+
+run-name: Deploy -> eu-west-1
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to eu-west-1
+        run: |
+          echo "Deploying version ${{ github.ref_name }} to eu-west-1"
