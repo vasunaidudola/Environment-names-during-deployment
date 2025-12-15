@@ -3,6 +3,10 @@ name: Deploy
 run-name: Deploy ${{ github.ref_name }} → ${{ inputs.aws_region }}
 
 on:
+  push:
+    tags:
+      - "v*"
+
   workflow_dispatch:
     inputs:
       aws_region:
@@ -18,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show deployment info
+      - name: Show info
         run: |
-          echo "Tag/Branch: ${{ github.ref_name }}"
+          echo "Tag: ${{ github.ref_name }}"
           echo "Region: ${{ inputs.aws_region }}"
