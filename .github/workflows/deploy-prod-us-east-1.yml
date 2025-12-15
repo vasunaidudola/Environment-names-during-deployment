@@ -1,4 +1,4 @@
-name: Deploy Release
+name: Deploy Prod (us-east-1)
 
 run-name: Deploy -> us-east-1
 
@@ -11,6 +11,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy application
+      - name: Deploy to us-east-1
         run: |
           echo "Deploying version ${{ github.ref_name }} to us-east-1"
