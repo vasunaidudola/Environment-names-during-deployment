@@ -5,12 +5,13 @@ run-name: Deploy | us-east-1 | ${{ github.ref_name }}
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: Print info
+        run: |
           echo "Tag: ${{ github.ref_name }}"
           echo "Region: us-east-1"
